@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
             this.x = 20;
             this.y = 100;
             this.speedY = 0;
-            this.maxSpeed = 2;
+            this.maxSpeed = 3;
         }
         update(){
             if(this.game.keys.includes('ArrowUp')) this.speedY =  -this.maxSpeed;
@@ -51,7 +51,8 @@ window.addEventListener('load', function() {
         draw(context){
             context.fillRect(this.x, this.y, this.width, this.height);
     }
-    class Enemy {
+}
+     class Enemy {
 
     }
     class Layer {
