@@ -8,8 +8,28 @@ window.addEventListener('load', function() {
     class InputHandler {
 
     }
-    class Projectile{
+    class Projectile {
 
     }
-    
+    class Particle {
+
+    }
+    class Player {
+
+    }
+    class Enemy {
+
+    }
+    class Layer {
+
+    }
+    class Background {
+
+    }
+    class UI {
+
+    }
+    class Game {
+
+    }
 });
