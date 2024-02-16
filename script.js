@@ -168,18 +168,18 @@ window.addEventListener('load', function() {
                 } else {
                     this.enemyTimer += deltaTime;
                 }
-
-        draw(context){
+            }
+        draw(context) {
             this.player.draw(context);
             this.ui.draw(context);
             this.enemies.forEach(enemy => {
                 enemy.draw(context);
-            });
+            }); 
         }
         addEnemy(){
             this.enemies.push(new Angler1(this));
         }
-    }
+        }
 
     const game = new Game(canvas.width, canvas.height);
     let lastTime = 0;
