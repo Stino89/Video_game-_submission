@@ -2,14 +2,14 @@ window.addEventListener('load', function() {
     //canvas setup
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 1500;
+    canvas.width = 500;
     canvas.height = 500;
 
     class InputHandler {
         constructor(game){
             this.game = game;
             window.addEventListener('keydown', e => {
-                if ((  (e.key === 'ArrowUp') 
+                if ((  (e.key === 'ArrowUp') ||
                        (e.key === 'ArrowDown')
                        )  && this.game.keys.indexOf(e.key) === -1){
                     this.game.keys.push(e.key);
