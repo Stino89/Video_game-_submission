@@ -260,7 +260,7 @@ window.addEventListener('load', function(){
             } else this.frameX = 0;
         }
         draw(context){
-            if (this.game.debug)context.strokeRect(this.x, this.y, this.width, this.height);
+            if (this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height);
            context.drawImage(This.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height,  this.x, this.y, this.width, this.height);
            if (this.game.debug){
             context.font = '20px Helvetica';
@@ -278,7 +278,6 @@ window.addEventListener('load', function(){
             this.frameY = Math.floor(Math.random() * 3);
             this.lives = 5;
             this.score = this.lives;
-        
         }
     }
     class Angler2 extends Enemy {
@@ -286,10 +285,10 @@ window.addEventListener('load', function(){
             super(game);
             this.width = 213;
             this.height = 165;
-            this.y = Math.random() * (this.game.height * 0.9 - this.height);
+            this.y = Math.random() * (this.game.height * 0.95 - this.height);
             this.image = document.getElementById('angler2');
             this.frameY = Math.floor(Math.random() * 2);
-            this.lives = 3;
+            this.lives = 6;
             this.score = this.lives;
         }
     }
@@ -298,7 +297,7 @@ window.addEventListener('load', function(){
             super(game);
             this.width = 99;
             this.height = 95;
-            this.y = Math.random() * (this.game.height * 0.9 - this.height);
+            this.y = Math.random() * (this.game.height * 0.95 - this.height);
             this.image = document.getElementById('lucky');
             this.frameY = Math.floor(Math.random() * 2);
             this.lives = 3;
@@ -485,7 +484,7 @@ window.addEventListener('load', function(){
             context.shadowColor = 'black';
             context.font = this.fontSize + 'px ' + this.fontFamily;
             //score
-            context.fillStyle('Score : ' + this.game.score, 20, 40);;
+            context.fillStyle('Score : ' + this.game.score, 20, 40);
             // timer
             const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
             context.fillText('Timer: ' + formattedTime, 20, 100);
