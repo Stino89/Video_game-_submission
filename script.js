@@ -550,23 +550,48 @@ window.addEventListener('load', function(){
                 } else {
                     this.ammoTimer += deltaTime;
                 }
+                this.shield.update(deltaTime);
+                this.particles.forEach(particle => particle.update());
+                this.particles = this.particles.filter(particle => !particle.markedForDeletion);
+                this.explosions.forEach(explosion => explosion.update(deltaTime));
+                this.explosions = this.explosions.filter(explosion => !explosion.markedForDeletion)
                 this.enemies.forEach(enemy => {
                     enemy.update();
                   if (this.checkCollision(this.player, enemy)){
                       enemy.markedForDeletion = true;
+                      this.addExplosion(enemy);
+                        this.sound.hit();
+                        this.shield.reset();
+                        for (let i = 0; i < enemy.score; i++){
+                            this.particles.push(new Particle(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
+                        }
                       if (enemy.type = 'lucky') this.player.enterPowerUp();
-                      else this.score--;
+                      else if (!this.gameOver) this.score--;
                   }  
                   this.player.projectiles.forEach(projectile => {
                         if (this.checkCollision(projectile, enemy)){
                             enemy.lives--;
                             projectile.markedForDeletion = true;
+                            this.particles.push(new Particle(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
                             if (enemy.lives <= 0) {
+                                for (let i = 0; i < enemy.score; i++){
+                                    this.particles.push(new Particle(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
+                                }
                                 enemy.markedForDeletion = true;
+                                this.addExplosion(enemy);
+                            this.sound.explosion();
+                            if (enemy.type === 'moon') this.player.enterPowerUp();
+                            if (enemy.type === 'hive'){
+                             for (let i = 0; i < 5; i++){
+        this.enemies.push(new Drone(this, enemy.x + Math.random() * enemy.width, enemy.y + Math.random() * enemy.height * 0.5));
                                 if(!this.gameOver) this.score += enemy.score;
                                 if (this.score > this.winningScore) this.gameOver = true;
                             }               
                   }
+                  if (!this.gameOver) this.score += enemy.score;
+                    /* if (this.score > this.winningScore) this.gameOver = true; */
+                }
+            }
                 })
                 });
                 this.enemies = this.enemies.filter(enemy => !enemy.markedForDeletion);
