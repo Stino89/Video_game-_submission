@@ -604,37 +604,20 @@ window.addEventListener('load', function(){
             }
         draw(context) {
             this.background.draw(context);
-            this.player.draw(context);
             this.ui.draw(context);
-            this.enemies.forEach(enemy => {
-                enemy.draw(context);
-            }); 
+            this.player.draw(context);
+            this.shield.draw(context);
+                this.particles.forEach(particle => particle.draw(context));
+                this.enemies.forEach(enemy => {
+                 enemy.draw(context);
+            });
+                this.explosions.forEach(explosion => {
+                explosion.draw(context);
+            });
             this.background.layer4.draw(context);
         }
-        addEnemy(){
-            const randomize = Math.random();
-            if (randomize < 0.3) this.enemies.push(new Angler1(this));
-            else if (randomize < 0.6) this.enemies.push(new Angler2(this));
-            else this.enemies.push(new LuckyFish(this));
-            console.log(this.enemies);
-        }
-        checkCollision(rect1, rect2){
-            return(      rect1.x < rect2.x + rect2.width &&
-                        rect1.x + rect1.width > rect2.x &&
-                        rect1.y < rect2.y + rect2.height &&
-                        rect1.height + rect1.y > rect2.y)
-        }
-    }
-    const game = new Game(canvas.width, canvas.height);
-    let lastTime = 0;
-    // animation loop
-    function animate(timeStamp){
-        const deltaTime = timestamp - lastTime;
-        lastTime = timeStamp;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        game.update(deltaTime);
-        game.draw(ctx);
-        requestAnimationFrame(animate);
-    }
-    animate(0);
-});
+
+
+
+
+
