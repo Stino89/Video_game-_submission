@@ -152,9 +152,16 @@ window.addEventListener('load', function(){
             if (this.y > this.game.height - this.bottomBounceBoundary && this.bounced < 5){
                 this.bounced++;
                 this.speedY *= -0.7;
-
         }
     }
+    draw(context){
+        context.save();
+        context.translate(this.x, this.y);
+        context.rotate(this.angle);
+        context.drawImage(this.image, this.frameX * this.spriteSize, this.frameY * this.spriteSize, this.spriteSize, this.spriteSize, this.
+        context.restore();
+    }
+}
     class Player {
         constructor(game){
             this.game = game;
@@ -179,8 +186,8 @@ window.addEventListener('load', function(){
             else this.speedY = 0;
             this.y += this.speedY;
             // vertical boundaries
-            if (this.y > this.game.height - this.height * 0.5) this.y = this.game.height -
-            this.height * 0.5;
+            if (this.y > this.game.height - this.height * 0.5) this.y = this.game.height - this.height * 0.5;
+            else if (this.y < -this.height * 0.5) this.y = -this.height * 0.5;
         // handle projectiles
         this.projectiles.forEach(projectile => {
             projectile.update();
@@ -192,7 +199,7 @@ window.addEventListener('load', function(){
         } else {
             this.frameX = 0;
         }
-        }
+        
         // power up
         if (this.powerUp){
             if (this.powerUpTimer > this.powerUpLimit){
@@ -218,6 +225,7 @@ window.addEventListener('load', function(){
             this.projectiles.push(new Projectile(this.game,this.x + 80, this.y + 30));
             this.game.ammo--;
             }
+            this.game.sound.shot();
             if(this.poweUp) this.shootBottom();    
         }
         shootBottom(){
@@ -229,7 +237,8 @@ window.addEventListener('load', function(){
         enterPowerUp(){
             this.powerUpTimer = 0;
             this.powerUp = true;
-            this.game.ammo = this.game.maxAmmo;
+            if (this.game.ammo < this.game.maxAmmo) this.game.ammo = this.game.maxAmmo;
+            this.game.sound.powerUp();
         }
     }
      class Enemy {
