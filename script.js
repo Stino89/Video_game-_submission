@@ -140,9 +140,18 @@ window.addEventListener('load', function(){
             this.markedForDeletion = false;
             this.angle = 0;
             this.va = Math.random() * 0.2 - 0.1;
+            this.bounced = 0;
+            this.bottomBounceBoundary = Math.random() * 80 + 60;
         }
         update(){
             this.angle += this.va;
+            this.speedY += this.gravity;
+            this.x -= this.speedX + this.game.speed;
+            this.y += this.speedY;
+            if (this.y > this.game.height + this.size || this.x < 0 - this.size) this.markedForDeletion = true;
+            if (this.y > this.game.height - this.bottomBounceBoundary && this.bounced < 5){
+                this.bounced++;
+                this.speedY *= -0.7;
 
         }
     }
