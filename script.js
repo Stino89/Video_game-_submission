@@ -85,7 +85,7 @@ window.addEventListener('load', function(){
             }
         }
         draw(context){
-            context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.game.player.x, this.game.play
+            context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, this.game.player.x, this.game.player.y, this.width, this.height);
         }
         reset(){
             this.frameX = 0;
@@ -158,7 +158,7 @@ window.addEventListener('load', function(){
         context.save();
         context.translate(this.x, this.y);
         context.rotate(this.angle);
-        context.drawImage(this.image, this.frameX * this.spriteSize, this.frameY * this.spriteSize, this.spriteSize, this.spriteSize, this.
+        context.drawImage(this.image, this.frameX * this.spriteSize, this.frameY * this.spriteSize, this.spriteSize, this.spriteSize, this.size * -0.5, this.size * -0.5, this.size, this.size);
         context.restore();
     }
 }
