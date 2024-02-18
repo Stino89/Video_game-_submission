@@ -458,6 +458,18 @@ window.addEventListener('load', function(){
             context.drawImage(this.image, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
         }
     }
+    class SmokeExplosion extends Explosion {
+        constructor(game, x, y){
+            super(game, x, y);
+            this.image = document.getElementById('smokeExplosion');
+        }
+    }
+    class FireExplosion extends Explosion {
+        constructor(game, x, y){
+            super(game, x, y);
+            this.image = document.getElementById('fireExplosion');
+        }
+    }
     class UI {
         constructor(game){
             this.game = game;
