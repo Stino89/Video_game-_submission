@@ -278,6 +278,7 @@ window.addEventListener('load', function(){
             this.frameY = Math.floor(Math.random() * 3);
             this.lives = 5;
             this.score = this.lives;
+        
         }
     }
     class Angler2 extends Enemy {
@@ -303,6 +304,20 @@ window.addEventListener('load', function(){
             this.lives = 3;
             this.score = 15;
             this.type = 'lucky';
+        }
+    }
+    class HiveWhale extends Enemy {
+        constructor(game){
+            super(game);
+            this.width = 400;
+            this.height = 227;
+            this.y = Math.random() * (this.game.height * 0.95 - this.height);
+            this.image = document.getElementById('hivewhale');
+            this.frameY = 0;
+            this.lives = 20;
+            this.score = this.lives;
+            this.type = 'hive';
+            this.speedX = Math.random() * -1.2 - 0.2;
         }
     }
     class Layer {
