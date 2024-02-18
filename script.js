@@ -616,7 +616,46 @@ window.addEventListener('load', function(){
             });
             this.background.layer4.draw(context);
         }
+        addEnemy(){
+            const randomize = Math.random();
+            if (randomize < 0.1) this.enemies.push(new Angler1(this));
+            else if (randomize < 0.3) this.enemies.push(new Stalker(this));
+            else if (randomize < 0.5) this.enemies.push(new Razorfin(this));
+            else if (randomize < 0.6) this.enemies.push(new Angler2(this));
+            else if (randomize < 0.7) this.enemies.push(new HiveWhale(this));
+            else if (randomize < 0.8) this.enemies.push(new BulbWhale(this));
+            else if (randomize < 0.9) this.enemies.push(new MoonFish(this));
+            else this.enemies.push(new LuckyFish(this));
+        }
+        addExplosion(enemy){
+            const randomize = Math.random();
+            if (randomize < 0.5) {
+                this.explosions.push(new SmokeExplosion(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
+            } else {
+                this.explosions.push(new FireExplosion(this, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
+            }
+        }
+        checkCollision(rect1, rect2){
+            return (        rect1.x < rect2.x + rect2.width &&
+                            rect1.x + rect1.width > rect2.x &&
+                            rect1.y < rect2.y + rect2.height &&
+                            rect1.height + rect1.y > rect2.y)
+        }
+    }
 
+    const game = new Game(canvas.width, canvas.height);
+    let lastTime = 0;
+    // animation loop
+    function animate(timeStamp){
+        const deltaTime = timeStamp - lastTime;
+        lastTime = timeStamp;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        game.draw(ctx);
+        game.update(deltaTime);
+        requestAnimationFrame(animate);
+    }
+    animate(0);
+});
 
 
 
