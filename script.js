@@ -521,21 +521,25 @@ window.addEventListener('load', function(){
             this.player = new Player(this);
             this.input = new InputHandler(this);
             this.ui = new UI(this);
+            this.sound = new SoundController()
+            this.shield = new Shield(this);
             this.keys = [];
             this.enemies = [];
+            this.particles = [];
+            this.explosions = [];
             this.enemyTimer = 0;
-            this.enemyInterval = 1000;
+            this.enemyInterval = 2000;
             this.ammo = 20;
             this.maxAmmo = 50;
             this.ammoTimer = 0;
             this.ammoInterval = 500;
             this.gameOver = false;
             this.score = 0;
-            this.winningScore = 10;
+            this.winningScore = 80;
             this.gameTime = 0;
-            this.timeLimit = 5000;
+            this.timeLimit = 3000;
             this.speed = 1;
-            this.debug = true;
+            this.debug = false;
         }
         update(deltaTime){
             if (!this.gameOver) this.gameTime += deltaTime;
@@ -553,7 +557,7 @@ window.addEventListener('load', function(){
                 this.particles.forEach(particle => particle.update());
                 this.particles = this.particles.filter(particle => !particle.markedForDeletion);
                 this.explosions.forEach(explosion => explosion.update(deltaTime));
-                this.explosions = this.explosions.filter(explosion => !explosion.markedForDeletion)
+                this.explosions = this.explosions.filter(explosion => !explosion.markedForDeletion);
                 this.enemies.forEach(enemy => {
                     enemy.update();
                   if (this.checkCollision(this.player, enemy)){
