@@ -132,7 +132,7 @@ window.addEventListener('load', function(){
             this.frameX =Math.floor(Math.random() * 3);
             this.frameY =Math.floor(Math.random() * 3);
             this.spriteSize = 50;
-            this.sizeModifier = (Math.random() * 0.5 + 0.5).tofixed(1);
+            this.sizeModifier = (Math.random() * 0.5 + 0.5).toFixed(1);
             this.size = this.spriteSize * this.sizeModifier
             this.speedX = Math.random() * 6 - 3;
             this.speedY = Math.random() * -15;
