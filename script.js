@@ -479,8 +479,8 @@ window.addEventListener('load', function(){
         draw(context){
             context.save();
             context.fillStyle = this.color;
-            context.shadowOffstX = 2;
-            context.shadowOffstY = 2;
+            context.shadowOffsetX = 2;
+            context.shadowOffsetY = 2;
             context.shadowColor = 'black';
             context.font = this.fontSize + 'px ' + this.fontFamily;
             //score
