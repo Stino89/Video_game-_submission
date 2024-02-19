@@ -484,7 +484,7 @@ window.addEventListener('load', function(){
             context.shadowColor = 'black';
             context.font = this.fontSize + 'px ' + this.fontFamily;
             //score
-            context.fillStyle('Score : ' + this.game.score, 20, 40);
+            context.fillText('Score : ' + this.game.score, 20, 40);
             // timer
             const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
             context.fillText('Timer: ' + formattedTime, 20, 100);
