@@ -352,7 +352,7 @@ window.addEventListener('load', function(){
             super(game);
             this.width = 227;
             this.height = 240;
-            this.y = Math.random() * (this.game.height * 0.95 - this.height)
+            this.y = Math.random() * (this.game.height * 0.95 - this.height);
             this.image = document.getElementById('moonfish');
             this.frameY = 0;
             this.lives = 10;
